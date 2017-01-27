@@ -272,7 +272,8 @@ export default class Browser extends DashboardView {
   }
 
   exportClass(className) {
-    this.context.currentApp.exportClass(className).always(() => {
+    let query = queryFromFilters(className, this.state.filters);
+    this.context.currentApp.exportClass(className, query._where).always(() => {
       this.setState({ showExportDialog: false });
     });
   }
